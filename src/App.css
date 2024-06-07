@@ -20,3 +20,24 @@
 .card img {
     border-radius: 16px;
 }
+
+.card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 16px;
+
+}
+
+.card .tags div {
+
+    background: white;
+    color: black;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: sans-serif;
+
+}
