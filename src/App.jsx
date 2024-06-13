@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import './App.css'
 import Card from './components/Card/Card'
+import { useEffect } from 'react'
 
 function App() {
 
@@ -22,7 +24,7 @@ function App() {
   // Assim que processo terminar, a variável 'response' receberá a reposta da API
   // Fetch é o pacote que usamos para acessar o conteúdo de URLs que estão em algum lugar da internet
 
-  const itens = [] //lista vazia para o código não 'quebrar'
+  const [itens, setItens] = useState([]) //lista vazia para o código não 'quebrar'
 
   async function loadData(){
     const apiUrl = 'https://rickandmortyapi.com/api/character' 
@@ -31,12 +33,25 @@ function App() {
 
     const body = await response.json()
 
-    console.log(body)
+
+    const results = body.results
+    console.log('results', results)
+
+// define como itens
+    setItens(results)
+
+    // itens.push(...results)
+
+
+    // console.log('itens (1)', itens)
 
   }
 
-  loadData();
-  
+  // loadData() //se carregado sem useEffect poder gerar um ddos na API, fazendo muitas solicitações ao mesmo tempo
+
+  useEffect(function() {
+    loadData()
+    }, [])  //só irá carregar a função uma vez, se houver alguma alteração
 
   return (
     <>
